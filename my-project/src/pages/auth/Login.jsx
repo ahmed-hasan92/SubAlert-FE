@@ -20,7 +20,7 @@ const Login = () => {
     mutationFn: () => login(loginInfo),
     onSuccess: () => {
       setUser(true);
-      navigate('*');
+      navigate('/dashboard');
       toast.success(`Welcome back!`);
     },
     onError: (error) => {
@@ -43,44 +43,44 @@ const Login = () => {
 
   return (
     <div className="w-full h-screen flex items-center justify-center bg-[#f5f6f8] px-4 lg:px-8 2xl:px-12 py-2 overflow-y-auto">
-      <div className="w-full h-full md:w-96 md:h-fit bg-white rounded-lg drop-shadow-2xl font-robotoFlex flex flex-col px-4 justify-center py-6">
-        <div className="w-full h-fit items-center flex space-x-2">
+      <div className="flex flex-col justify-center w-full h-full px-4 py-6 bg-white rounded-lg md:w-96 md:h-fit drop-shadow-2xl font-robotoFlex">
+        <div className="flex items-center w-full space-x-2 h-fit">
           <img src={logo} alt="logo" className="w-7 h-7" />
-          <h1 className="text-xl text-gray-800 font-bold tracking-wide">
+          <h1 className="text-xl font-bold tracking-wide text-gray-800">
             SubAlert
           </h1>
         </div>
-        <div className="w-full h-fit flex flex-col mt-8 ">
+        <div className="flex flex-col w-full mt-8 h-fit ">
           <h1 className="text-[1rem] text-gray-800 font-semibold ">
             Login now
           </h1>
-          <p className="text-gray-600 text-sm">
+          <p className="text-sm text-gray-600">
             Welcome back again to SubAlert!
           </p>
         </div>
         <form
           onSubmit={handleFormSubmission}
-          className="mt-8 w-full h-fit flex flex-col gap-5"
+          className="flex flex-col w-full gap-5 mt-8 h-fit"
         >
-          <div className="h-fit w-full flex flex-col">
+          <div className="flex flex-col w-full h-fit">
             <input
               type="email"
               name="email"
               value={loginInfo.email}
               onChange={handleChange}
               required
-              className="w-full px-2 py-2 text-gray-700 text-sm placeholder:text-sm placeholder:text-gray-600 outline-none border border-gray-300 rounded-md"
+              className="w-full px-2 py-2 text-sm text-gray-700 border border-gray-300 rounded-md outline-none placeholder:text-sm placeholder:text-gray-600"
               placeholder="Email address"
             />
           </div>
-          <div className="h-fit w-full flex flex-col">
+          <div className="flex flex-col w-full h-fit">
             <input
               type="password"
               name="password"
               value={loginInfo.password}
               onChange={handleChange}
               required
-              className="w-full px-2 py-2 text-gray-700 text-sm placeholder:text-sm placeholder:text-gray-600 outline-none border border-gray-300 rounded-md"
+              className="w-full px-2 py-2 text-sm text-gray-700 border border-gray-300 rounded-md outline-none placeholder:text-sm placeholder:text-gray-600"
               placeholder="Password"
             />
             <p className="text-[#017ef4] underline mt-1 text-sm">
@@ -94,7 +94,7 @@ const Login = () => {
             Login
           </button>
         </form>
-        <p className="text-gray-700  mt-3 text-sm tracking-wide">
+        <p className="mt-3 text-sm tracking-wide text-gray-700">
           Don't have an account?{' '}
           <span>
             <NavLink className="text-[#017ef4] font-medium" to="/register">
