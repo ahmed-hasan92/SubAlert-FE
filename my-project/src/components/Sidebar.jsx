@@ -28,7 +28,7 @@ const Sidebar = ({ isSideBarFullView }) => {
       </ul>
       <div className="px-4 py-4 mt-auto border-t border-gray-300">
         <button
-          className={`flex items-center gap-2 w-full ${
+          className={`flex items-center gap-2 w-full  ${
             isSideBarFullView ? 'justify-start' : 'justify-center'
           } text-gray-700`}
         >

@@ -2,31 +2,48 @@ import React, { useState } from 'react';
 import newSubscriptionIcon from '../assets/addNew.svg';
 import closeIcon from '../assets/close.svg';
 
-import amazonLogo from '../assets/amazonPrimelogo.png';
-import youTube from '../assets/youtubeLogo.png';
-import netFlix from '../assets/netflixLogo.png';
-import spotify from '../assets/spotifyLogo.webp';
-
 import useSubscription from '../hooks/useSubscription';
 
 const predefinedSubscriptions = [
-  { name: 'YouTube Premium', image: youTube },
-  { name: 'Netflix', image: netFlix },
-  { name: 'Amazon Prime', image: amazonLogo },
-  { name: 'Spotify', image: spotify },
+  { name: 'YouTube Premium' },
+  { name: 'Netflix' },
+  { name: 'Amazon Prime' },
+  { name: 'Spotify' },
+  { name: 'Disney+' },
+  { name: 'Hulu' },
+  { name: 'Apple Music' },
+  { name: 'HBO Max' },
+  { name: 'Paramount+' },
+  { name: 'Peacock' },
+  { name: 'Crunchyroll' },
+  { name: 'Showtime' },
+  { name: 'Discovery+' },
+  { name: 'Audible' },
+  { name: 'Tidal' },
+  { name: 'Xbox Game Pass' },
+  { name: 'PlayStation Plus' },
+  { name: 'Google One' },
+  { name: 'Dropbox' },
+  { name: 'Canva' },
+  { name: 'Adobe Creative Cloud' },
+  { name: 'LinkedIn Premium' },
+  { name: 'Grammarly' },
+  { name: 'Skillshare' },
+  { name: 'Coursera' },
+  { name: 'MasterClass' },
+  { name: 'Patreon' },
 ];
 
 const NewSubscription = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [subscriptionName, setSubscriptionName] = useState('');
-  const [subscriptionImage, setSubscriptionImage] = useState(null);
   const [customImage, setCustomImage] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [startDate, setStartDate] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [amount, setAmount] = useState('');
 
-  const { addNewSubscription } = useSubscription();
+  const { addNewSubscription } = useSubscription(); // Custom hook
 
   const handleOpenModal = () => {
     setIsModalOpened(true);
@@ -35,7 +52,6 @@ const NewSubscription = () => {
   const handleCloseModal = () => {
     setIsModalOpened(false);
     setSubscriptionName('');
-    setSubscriptionImage(null);
     setCustomImage(null);
     setSuggestions([]);
     setStartDate('');
@@ -49,7 +65,6 @@ const NewSubscription = () => {
 
     if (inputName.trim() === '') {
       setSuggestions([]);
-      setSubscriptionImage(null);
       return;
     }
 
@@ -58,22 +73,11 @@ const NewSubscription = () => {
     );
 
     setSuggestions(matchedSubscriptions);
-
-    const exactMatch = matchedSubscriptions.find(
-      (sub) => sub.name.toLowerCase() === inputName.toLowerCase(),
-    );
-
-    if (exactMatch) {
-      setSubscriptionImage(exactMatch.image);
-    } else {
-      setSubscriptionImage(null);
-    }
   };
 
   const handleSelectSuggestion = (suggestion) => {
     setSubscriptionName(suggestion.name);
-    setSubscriptionImage(suggestion.image);
-    setSuggestions([]);
+    setSuggestions([]); // Clear suggestions after selection
   };
 
   const handleImageChange = (e) => {
@@ -96,12 +100,10 @@ const NewSubscription = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const image = customImage || subscriptionImage;
-
     addNewSubscription(
       {
         name: subscriptionName,
-        image,
+        image: customImage,
         startDate,
         expiryDate,
         amount,
@@ -166,25 +168,13 @@ const NewSubscription = () => {
                 ))}
               </ul>
             )}
-            {subscriptionImage ? (
-              <div className="flex items-center gap-2">
-                <img
-                  src={subscriptionImage}
-                  alt="Subscription"
-                  className="w-12 h-12 rounded"
-                />
-                <span className="text-sm font-medium text-gray-600">
-                  Auto-detected image
-                </span>
-              </div>
-            ) : (
-              <input
-                placeholder="Upload custom image"
-                type="file"
-                onChange={handleImageChange}
-                className="w-full px-2 py-2 border border-gray-300 rounded-md outline-none h-fit"
-              />
-            )}
+            <input
+              placeholder="Upload image"
+              type="file"
+              onChange={handleImageChange}
+              className="w-full px-2 py-2 border border-gray-300 rounded-md outline-none h-fit"
+              required
+            />
             <div className="flex items-center justify-between w-full h-fit">
               <input
                 placeholder="Starting date"

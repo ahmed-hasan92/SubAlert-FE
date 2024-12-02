@@ -6,12 +6,15 @@ const addSubscription = async (name, image, startDate, expiryDate, amount) => {
   formData.append('startDate', startDate);
   formData.append('expiryDate', expiryDate);
   formData.append('amount', amount);
-  if (image !== null && image !== undefined) {
+
+  // Check if image is a File or a URL (string)
+  if (image instanceof File) {
     formData.append('image', image);
+  } else if (typeof image === 'string') {
+    formData.append('imageUrl', image); // Use a different field for URLs
   }
 
   const response = await instance.post('/subscription', formData);
   return response.data;
 };
-
 export { addSubscription };
