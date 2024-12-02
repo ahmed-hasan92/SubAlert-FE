@@ -21,6 +21,11 @@ const login = async ({ email, password }) => {
   return response.data;
 };
 
+const myData = async () => {
+  const response = await instance.get('/user/mydata');
+  return response.data;
+};
+
 const storeToken = (token) => {
   localStorage.setItem('token', token);
 };
@@ -39,4 +44,4 @@ const checkToken = () => {
   return false;
 };
 
-export { checkToken, register, login };
+export { checkToken, register, login, myData };
