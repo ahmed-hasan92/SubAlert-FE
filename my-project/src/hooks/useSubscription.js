@@ -1,5 +1,5 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addSubscription } from '../api/subscription';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { addSubscription, getAllSubscriptions } from '../api/subscription';
 import { toast } from 'react-hot-toast';
 
 const useSubscription = () => {
@@ -18,7 +18,12 @@ const useSubscription = () => {
     },
   });
 
-  return { addNewSubscription };
+  const { data: allSubscriptions, isLoading } = useQuery({
+    queryKey: ['ALL_SUBSCRIPTIONS'],
+    queryFn: () => getAllSubscriptions(),
+  });
+
+  return { addNewSubscription, allSubscriptions, isLoading };
 };
 
 export default useSubscription;

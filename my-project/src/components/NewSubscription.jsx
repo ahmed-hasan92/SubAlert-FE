@@ -173,7 +173,6 @@ const NewSubscription = () => {
               type="file"
               onChange={handleImageChange}
               className="w-full px-2 py-2 border border-gray-300 rounded-md outline-none h-fit"
-              required
             />
             <div className="flex items-center justify-between w-full h-fit">
               <input

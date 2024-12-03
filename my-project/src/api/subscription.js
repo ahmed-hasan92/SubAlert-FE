@@ -17,4 +17,10 @@ const addSubscription = async (name, image, startDate, expiryDate, amount) => {
   const response = await instance.post('/subscription', formData);
   return response.data;
 };
-export { addSubscription };
+
+const getAllSubscriptions = async () => {
+  const response = await instance.get('/subscription');
+  return response.data;
+};
+
+export { addSubscription, getAllSubscriptions };

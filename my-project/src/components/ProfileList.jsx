@@ -1,5 +1,5 @@
 import React from 'react';
-import profileImage from '../assets/profile.webp';
+import profileImage from '../assets/default-profile-picture1.jpg';
 import useMyProfile from '../hooks/useMyProfile';
 
 const ProfileList = ({ isOpen, toggleDropdown }) => {

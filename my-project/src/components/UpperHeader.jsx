@@ -30,11 +30,12 @@ const UpperHeader = ({ handleOnClickFullViewSideBar }) => {
         </div>
       </div>
       <div className="relative flex items-center h-full gap-6 w-fit">
+        <NewSubscription />
+
         <Notification
           isOpen={activeDropdown === 'notifications'}
           toggleDropdown={() => toggleDropdown('notifications')}
         />
-        <NewSubscription />
         <ProfileList
           isOpen={activeDropdown === 'profile'}
           toggleDropdown={() => toggleDropdown('profile')}
